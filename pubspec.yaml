@@ -1,0 +1,78 @@
+name: viacred_app
+description: "A new Flutter project."
+
+publish_to: 'none'
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.6.1
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.8
+  provider: ^6.1.2
+  firebase_auth: ^5.4.1
+  firebase_ui_auth: ^1.16.1
+  firebase_core: ^3.10.1
+  shared_preferences: ^2.4.0
+  cloud_firestore: ^5.6.2
+  get: ^4.6.6
+  firebase_ui_localizations: ^1.13.1
+  intl: ^0.19.0
+  brasil_fields: ^1.15.0
+  flutter_launcher_icons: ^0.14.3
+  flutter_native_splash: ^2.4.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^5.0.0
+
+
+flutter:
+
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+
+  fonts:
+    - family: DepotBold
+      fonts:
+        - asset: assets/fonts/DepotBold.ttf
+
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/favicon.jpg"
+  adaptive_icon_foreground: "assets/images/favicon.jpg"
+
+
+  min_sdk_android: 21
+
+
+  web:
+    generate: true
+    image_path:  "assets/images/favicon.jpg"
+
+
+  windows:
+    generate: true
+    image_path:  "assets/images/favicon.jpg"
+    icon_size: 48
+
+
+  macos:
+    generate: true
+    image_path:  "assets/images/favicon.jpg"

@@ -31,4 +31,4 @@ O objetivo deste projeto é desenvolver um aplicativo móvel para que os cliente
 ## 🎯 **Objetivos do Projeto**
 - Criar uma plataforma de feedback eficiente para avaliar as filiais da cooperativa.
 - Integrar a autenticação Firebase para garantir um processo seguro de registro de avaliações.
-# viacred_mobile_app
+
