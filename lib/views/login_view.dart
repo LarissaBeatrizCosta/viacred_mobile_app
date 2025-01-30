@@ -47,6 +47,13 @@ class _LoginViewState extends State<LoginView> {
     final providers = [EmailAuthProvider()];
 
     return SignInScreen(
+      sideBuilder: (context, constraints) {
+        return Image.asset(
+          'assets/images/favicon.jpg',
+          height: constraints.maxHeight,
+          width: constraints.maxWidth,
+        );
+      },
       providers: providers,
       actions: [
         AuthStateChangeAction<SignedIn>(

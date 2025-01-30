@@ -94,6 +94,7 @@ class _TypingArea extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: TextField(
+          keyboardType: TextInputType.text,
           controller: state.controllerText,
           decoration: InputDecoration(
             border: InputBorder.none,
