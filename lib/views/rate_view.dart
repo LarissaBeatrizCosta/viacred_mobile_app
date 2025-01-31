@@ -83,7 +83,6 @@ class _TextInfo extends StatelessWidget {
   }
 }
 
-//todo: padronizar para tirar repetição
 class _StarsRate1 extends StatelessWidget {
   const _StarsRate1();
 

@@ -20,7 +20,6 @@ class RateStarsController extends ChangeNotifier {
   ///Estrelas tempo
   int _timeValue = 0;
 
-  //todo: retirar essas repetiçoes
   ///ponto de atendimento
   int get locationValue => _locationValue;
 
