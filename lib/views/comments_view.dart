@@ -32,11 +32,7 @@ class _Body extends StatelessWidget {
             _Button(
               color: ColorsHome().colorMap[9],
               onTap: () async {
-                if (state.commentText.text.isNotEmpty) {
-                  await state.insertRates(context);
-                } else {
-                  Navigator.pushReplacementNamed(context, '/thanks');
-                }
+                await state.insertRates(context);
               },
             ),
             _TextInfo(),
