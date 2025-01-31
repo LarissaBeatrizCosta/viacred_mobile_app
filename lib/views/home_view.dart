@@ -103,6 +103,7 @@ class _RateBar extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       fixedSize: const Size(100, 95),
+                      splashFactory: InkSplash.splashFactory,
                     ),
                     child: Text(
                       index.toString(),

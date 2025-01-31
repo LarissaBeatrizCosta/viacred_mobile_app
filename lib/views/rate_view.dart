@@ -46,6 +46,7 @@ class _Body extends StatelessWidget {
                     if (state.collaboratorValue > 0 &&
                         state.locationValue != 0 &&
                         state.timeValue != 0) {
+                      context.read<RatesController>().resetCpf();
                       Navigator.pushReplacementNamed(context, '/confirmCpf');
                     } else {
                       SnackBarHelp().showEmptyValueSnackbar();

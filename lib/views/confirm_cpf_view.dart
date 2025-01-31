@@ -36,7 +36,6 @@ class _Body extends StatelessWidget {
               _Button(
                 text: 'Sim',
                 onTap: () {
-                  context.read<RatesController>().resetCpf();
                   Navigator.pushReplacementNamed(context, '/register_cpf');
                 },
                 color: ColorsHome().colorMap[9],
