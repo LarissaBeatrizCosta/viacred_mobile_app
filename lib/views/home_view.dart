@@ -79,10 +79,6 @@ class _RateBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final style = TextStyle(
-    //   fontSize: 48,
-    //   color: ColorsHome().colorMap[11],
-    // );
     return Consumer<RatesController>(
       builder: (_, stateRateNumer, __) {
         return Row(
@@ -91,8 +87,8 @@ class _RateBar extends StatelessWidget {
             11,
             (index) {
               final textColor = stateRateNumer.selectedButtonIndex == index
-                  ? Colors.black
-                  : Colors.white;
+                  ? ColorsHome().colorMap[14]
+                  : ColorsHome().colorMap[11];
 
               return Row(
                 children: [
