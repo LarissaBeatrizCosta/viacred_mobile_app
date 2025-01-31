@@ -21,6 +21,7 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<RatesController>().resetSelectButton();
     context.read<RatesController>().resetRateHome();
 
     return ScreenDefault(

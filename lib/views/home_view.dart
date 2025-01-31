@@ -59,8 +59,8 @@ class _TextInfo extends StatelessWidget {
         'experiência de hoje para amigos e familiares?';
 
     final style = Theme.of(context).textTheme.bodyLarge?.copyWith(
-      fontSize: 55,
-    );
+          fontSize: 55,
+        );
 
     return Padding(
       padding: EdgeInsets.only(bottom: 50, right: 5, left: 30),
@@ -75,27 +75,31 @@ class _TextInfo extends StatelessWidget {
 
 ///Barra de avaliação de 0 a 10
 class _RateBar extends StatelessWidget {
-  ///Construtor
   const _RateBar();
 
   @override
   Widget build(BuildContext context) {
-    final style = TextStyle(
-      fontSize: 48,
-      color: ColorsHome().colorMap[11],
-    );
+    // final style = TextStyle(
+    //   fontSize: 48,
+    //   color: ColorsHome().colorMap[11],
+    // );
     return Consumer<RatesController>(
       builder: (_, stateRateNumer, __) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
             11,
-                (index) {
+            (index) {
+              final textColor = stateRateNumer.selectedButtonIndex == index
+                  ? Colors.black
+                  : Colors.white;
+
               return Row(
                 children: [
                   ElevatedButton(
                     onPressed: () {
                       stateRateNumer.rateNumberValue(index);
+                      stateRateNumer.selectButton(index);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: ColorsHome().colorMap[index],
@@ -107,7 +111,10 @@ class _RateBar extends StatelessWidget {
                     ),
                     child: Text(
                       index.toString(),
-                      style: style,
+                      style: TextStyle(
+                        fontSize: 48,
+                        color: textColor,
+                      ),
                     ),
                   ),
                   SizedBox(width: 15),

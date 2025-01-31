@@ -40,6 +40,24 @@ class RatesController extends ChangeNotifier {
   ///Controller da digitação do cpf
   TextEditingController cpfText = TextEditingController();
 
+  /// Variável para armazenar o índice do botão pressionado
+  int? _selectedButtonIndex;
+
+  /// Getter para o índice do botão selecionado
+  int? get selectedButtonIndex => _selectedButtonIndex;
+
+  /// Método para atualizar o índice do botão pressionado
+  void selectButton(int index) {
+    _selectedButtonIndex = index;
+    notifyListeners();
+  }
+
+  /// Método para atualizar o índice do botão pressionado
+  void resetSelectButton() {
+    _selectedButtonIndex = null;
+    notifyListeners();
+  }
+
   ///Função responsável pela atualização do valor da avaliação
   void rateNumberValue(int valor) {
     _valueRate = valor;
