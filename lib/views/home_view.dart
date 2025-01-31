@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../controllers/home_controller.dart';
 import '../controllers/profile_controller.dart';
+import '../controllers/rates_controller.dart';
 import '../utils/button_send.dart';
 import '../utils/colors.dart';
 import '../utils/screen_default.dart';
@@ -15,26 +15,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => RateNumberController(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => ProfileController(),
-        ),
-      ],
-      child: _Body(),
-    );
-  }
-}
-
-class _Body extends StatelessWidget {
-  const _Body();
-
-  @override
-  Widget build(BuildContext context) {
-    final state = Provider.of<RateNumberController>(context);
+    final state = Provider.of<RatesController>(context);
     final stateModal = Provider.of<ProfileController>(context);
 
     return GestureDetector(
@@ -54,7 +35,8 @@ class _Body extends StatelessWidget {
                 color: ColorsHome().colorMap[12],
                 onTap: () async {
                   if (state.valueRate != null) {
-                    await state.insertRateValue(context);
+                    context.read<RatesController>().resetRate();
+                    Navigator.pushReplacementNamed(context, '/rateStars');
                   } else {
                     SnackBarHelp().showEmptyValueSnackbar();
                   }
@@ -77,8 +59,8 @@ class _TextInfo extends StatelessWidget {
         'experiência de hoje para amigos e familiares?';
 
     final style = Theme.of(context).textTheme.bodyLarge?.copyWith(
-          fontSize: 55,
-        );
+      fontSize: 55,
+    );
 
     return Padding(
       padding: EdgeInsets.only(bottom: 50, right: 5, left: 30),
@@ -102,13 +84,13 @@ class _RateBar extends StatelessWidget {
       fontSize: 48,
       color: ColorsHome().colorMap[11],
     );
-    return Consumer<RateNumberController>(
+    return Consumer<RatesController>(
       builder: (_, stateRateNumer, __) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
             11,
-            (index) {
+                (index) {
               return Row(
                 children: [
                   ElevatedButton(

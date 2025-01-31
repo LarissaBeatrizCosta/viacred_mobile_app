@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../controllers/rate_stars_controller.dart';
+import '../controllers/rates_controller.dart';
 import '../utils/button_send.dart';
 import '../utils/colors.dart';
 import '../utils/screen_default.dart';
@@ -14,10 +13,7 @@ class RateStarView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => RateStarsController(),
-      child: _Body(),
-    );
+    return _Body();
   }
 }
 
@@ -26,7 +22,7 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<RateStarsController>(context);
+    final state = Provider.of<RatesController>(context);
 
     return ScreenDefault(
         marginTop: 10,
@@ -50,7 +46,7 @@ class _Body extends StatelessWidget {
                     if (state.collaboratorValue > 0 &&
                         state.locationValue != 0 &&
                         state.timeValue != 0) {
-                      state.insertLocationRate(context);
+                      Navigator.pushReplacementNamed(context, '/confirmCpf');
                     } else {
                       SnackBarHelp().showEmptyValueSnackbar();
                     }
@@ -88,7 +84,7 @@ class _StarsRate1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<RateStarsController>(context);
+    final state = Provider.of<RatesController>(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
@@ -122,7 +118,7 @@ class _StarsRate2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<RateStarsController>(context);
+    final state = Provider.of<RatesController>(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
@@ -156,7 +152,7 @@ class _StarsRate3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<RateStarsController>(context);
+    final state = Provider.of<RatesController>(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(

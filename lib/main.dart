@@ -7,6 +7,8 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import 'controllers/inactivity_controller.dart';
+import 'controllers/profile_controller.dart';
+import 'controllers/rates_controller.dart';
 import 'firebase_options.dart';
 import 'i10/auth.dart';
 import 'views/home_view.dart';
@@ -31,9 +33,19 @@ void main() async {
   );
 
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => InactivityController(),
-      child: const MyApp(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => RatesController(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => InactivityController(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ProfileController(),
+        ),
+      ],
+      child: MyApp(),
     ),
   );
 }
@@ -55,7 +67,6 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         theme: ThemeData(
           fontFamily: 'DepotBold',
-
         ),
         localizationsDelegates: [
           FirebaseUILocalizations.withDefaultOverrides(const LabelOverrides()),

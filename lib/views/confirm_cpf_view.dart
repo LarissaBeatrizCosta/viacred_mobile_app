@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../controllers/rates_controller.dart';
 import '../utils/colors.dart';
 import '../utils/screen_default.dart';
 
@@ -19,6 +21,8 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = Provider.of<RatesController>(context);
+
     return ScreenDefault(
       marginTop: 0,
       child: Column(
@@ -32,13 +36,15 @@ class _Body extends StatelessWidget {
               _Button(
                 text: 'Sim',
                 onTap: () {
+                  context.read<RatesController>().resetCpf();
                   Navigator.pushReplacementNamed(context, '/register_cpf');
                 },
                 color: ColorsHome().colorMap[9],
               ),
               _Button(
                 text: 'Não',
-                onTap: () {
+                onTap: () async {
+                  await state.insertRates(context);
                   Navigator.pushReplacementNamed(context, '/thanks');
                 },
                 color: ColorsHome().colorMap[5],

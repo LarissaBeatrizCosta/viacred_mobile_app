@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../controllers/register_cpf_controller.dart';
+import '../controllers/rates_controller.dart';
 import '../utils/button_send.dart';
 import '../utils/colors.dart';
 import '../utils/screen_default.dart';
@@ -13,10 +13,7 @@ class RegisterCpfView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => RegisterCpfController(),
-      child: _Body(),
-    );
+    return _Body();
   }
 }
 
@@ -25,7 +22,7 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<RegisterCpfController>(context);
+    final state = Provider.of<RatesController>(context);
 
     return Scaffold(
       body: ScreenDefault(
@@ -40,6 +37,7 @@ class _Body extends StatelessWidget {
               child: ButtonSend(
                 color: ColorsHome().colorMap[5],
                 onTap: () async {
+                  context.read<RatesController>().resetComment();
                   await state.checkCpf(context);
                 },
               ),
@@ -97,10 +95,10 @@ class _Input extends StatelessWidget {
       color: ColorsHome().colorMap[12] ?? Colors.lightBlue[900]!,
     );
 
-    final state = Provider.of<RegisterCpfController>(context);
+    final state = Provider.of<RatesController>(context);
     return TextField(
       readOnly: true,
-      controller: state.controllerText,
+      controller: state.cpfText,
       style: style,
       textAlign: TextAlign.center,
       decoration: InputDecoration(
@@ -123,7 +121,7 @@ class _KeyBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<RegisterCpfController>(context);
+    final state = Provider.of<RatesController>(context);
 
     final style = Theme.of(context).textTheme.bodyLarge?.copyWith(
           fontSize: 30,
@@ -145,19 +143,19 @@ class _KeyBoard extends StatelessWidget {
                         context,
                         number: '1',
                         style: style,
-                        controllerText: state.controllerText,
+                        controllerText: state.cpfText,
                       ),
                       _KeyButton(
                         context,
                         number: '2',
                         style: style,
-                        controllerText: state.controllerText,
+                        controllerText: state.cpfText,
                       ),
                       _KeyButton(
                         context,
                         number: '3',
                         style: style,
-                        controllerText: state.controllerText,
+                        controllerText: state.cpfText,
                       ),
                     ],
                   ),
@@ -168,19 +166,19 @@ class _KeyBoard extends StatelessWidget {
                         context,
                         number: '4',
                         style: style,
-                        controllerText: state.controllerText,
+                        controllerText: state.cpfText,
                       ),
                       _KeyButton(
                         context,
                         number: '5',
                         style: style,
-                        controllerText: state.controllerText,
+                        controllerText: state.cpfText,
                       ),
                       _KeyButton(
                         context,
                         number: '6',
                         style: style,
-                        controllerText: state.controllerText,
+                        controllerText: state.cpfText,
                       ),
                     ],
                   ),
@@ -191,19 +189,19 @@ class _KeyBoard extends StatelessWidget {
                         context,
                         number: '7',
                         style: style,
-                        controllerText: state.controllerText,
+                        controllerText: state.cpfText,
                       ),
                       _KeyButton(
                         context,
                         number: '8',
                         style: style,
-                        controllerText: state.controllerText,
+                        controllerText: state.cpfText,
                       ),
                       _KeyButton(
                         context,
                         number: '9',
                         style: style,
-                        controllerText: state.controllerText,
+                        controllerText: state.cpfText,
                       ),
                     ],
                   ),
@@ -218,13 +216,13 @@ class _KeyBoard extends StatelessWidget {
                         context,
                         number: '0',
                         style: style,
-                        controllerText: state.controllerText,
+                        controllerText: state.cpfText,
                       ),
                       _KeyButton(
                         context,
                         number: 'del',
                         style: style,
-                        controllerText: state.controllerText,
+                        controllerText: state.cpfText,
                       ),
                     ],
                   ),
@@ -252,7 +250,7 @@ class _KeyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<RegisterCpfController>(context);
+    final state = Provider.of<RatesController>(context);
 
     final style = Theme.of(context).textTheme.bodyLarge?.copyWith(
           fontSize: 40,

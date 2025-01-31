@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../controllers/comments_controller.dart';
+import '../controllers/rates_controller.dart';
 import '../utils/colors.dart';
 import '../utils/screen_default.dart';
 
@@ -11,10 +11,7 @@ class CommentsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => CommentsController(),
-      child: _Body(),
-    );
+    return _Body();
   }
 }
 
@@ -23,7 +20,7 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<CommentsController>(context);
+    final state = Provider.of<RatesController>(context);
 
     return Scaffold(
       body: ScreenDefault(
@@ -35,8 +32,8 @@ class _Body extends StatelessWidget {
             _Button(
               color: ColorsHome().colorMap[9],
               onTap: () async {
-                if (state.controllerText.text.isNotEmpty) {
-                  await state.insertCommentRate(context);
+                if (state.commentText.text.isNotEmpty) {
+                  await state.insertRates(context);
                 } else {
                   Navigator.pushReplacementNamed(context, '/thanks');
                 }
@@ -81,7 +78,7 @@ class _TypingArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = Provider.of<CommentsController>(context);
+    final state = Provider.of<RatesController>(context);
 
     return Container(
       width: 1000,
@@ -95,7 +92,7 @@ class _TypingArea extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: TextField(
           keyboardType: TextInputType.text,
-          controller: state.controllerText,
+          controller: state.commentText,
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: 'Digite aqui...',
