@@ -130,7 +130,6 @@ class RatesController extends ChangeNotifier {
   ///Verifica Validez do CPF e chama o banco para adicionar
   Future<void> checkCpf(BuildContext context) async {
     var cpfUnformatted = cpfText.text.replaceAll(RegExp(r'\D'), '');
-    cpfText.text = cpfUnformatted;
     if (GetUtils.isCpf(cpfUnformatted)) {
       Navigator.pushReplacementNamed(context, '/comments');
     } else {
@@ -165,7 +164,7 @@ class RatesController extends ChangeNotifier {
           collaboratorValue: collaboratorValue,
           timeValue: timeValue,
           commentValue: commentText.text,
-          cpfValue: cpfText.text);
+          cpfValue: cpfText.text.replaceAll(RegExp(r'\D'), ''));
 
       Navigator.pushReplacementNamed(context, '/thanks');
     } catch (e) {
