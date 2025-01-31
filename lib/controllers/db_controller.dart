@@ -14,6 +14,7 @@ class DbController {
     int? locationValue,
     int? collaboratorValue,
     int? timeValue,
+    String? cpfValue,
     String? commentValue,
   }) async {
     try {
@@ -25,6 +26,7 @@ class DbController {
         'collaboratorValue': collaboratorValue,
         'timeValue': timeValue,
         'commentValue': commentValue,
+        'cpfValue': cpfValue,
         'time': DateTime.now(),
       });
     } catch (e) {

@@ -40,8 +40,6 @@ class RatesController extends ChangeNotifier {
   ///Controller da digitação do cpf
   TextEditingController cpfText = TextEditingController();
 
-
-
   ///Função responsável pela atualização do valor da avaliação
   void rateNumberValue(int valor) {
     _valueRate = valor;
@@ -107,7 +105,7 @@ class RatesController extends ChangeNotifier {
   ///Verifica Validez do CPF e chama o banco para adicionar
   Future<void> checkCpf(BuildContext context) async {
     var cpfUnformatted = cpfText.text.replaceAll(RegExp(r'\D'), '');
-
+    cpfText.text = cpfUnformatted;
     if (GetUtils.isCpf(cpfUnformatted)) {
       Navigator.pushReplacementNamed(context, '/comments');
     } else {
@@ -137,12 +135,12 @@ class RatesController extends ChangeNotifier {
   Future<void> insertRates(BuildContext context) async {
     try {
       await db.insertRates(
-        numberRate: valueRate,
-        locationValue: locationValue,
-        collaboratorValue: collaboratorValue,
-        timeValue: timeValue,
-        commentValue: commentText.text,
-      );
+          numberRate: valueRate,
+          locationValue: locationValue,
+          collaboratorValue: collaboratorValue,
+          timeValue: timeValue,
+          commentValue: commentText.text,
+          cpfValue: cpfText.text);
 
       Navigator.pushReplacementNamed(context, '/thanks');
     } catch (e) {
