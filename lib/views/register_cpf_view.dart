@@ -37,7 +37,6 @@ class _Body extends StatelessWidget {
               child: ButtonSend(
                 color: ColorsHome().colorMap[5],
                 onTap: () async {
-                  context.read<RatesController>().resetComment();
                   await state.checkCpf(context);
                 },
               ),
