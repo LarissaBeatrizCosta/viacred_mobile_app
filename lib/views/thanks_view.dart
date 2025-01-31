@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../controllers/rates_controller.dart';
 import '../utils/colors.dart';
 import '../utils/screen_default.dart';
 
@@ -19,6 +21,8 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<RatesController>().resetRateHome();
+
     return ScreenDefault(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

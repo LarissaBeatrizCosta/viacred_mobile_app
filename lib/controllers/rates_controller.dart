@@ -46,6 +46,13 @@ class RatesController extends ChangeNotifier {
     notifyListeners();
   }
 
+  ///Reseta os botões da home de indicação
+  void resetRateHome(){
+    _valueRate = null;
+    notifyListeners();
+  }
+
+
   ///Reseta valor das estrelas
   void resetRate() {
     _locationValue = 0;
