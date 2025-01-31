@@ -43,7 +43,15 @@ class _LoginViewState extends State<LoginView> {
     if (_isLoading) {
       return Center(child: CircularProgressIndicator());
     }
+    return _Body();
+  }
+}
 
+class _Body extends StatelessWidget {
+  const _Body();
+
+  @override
+  Widget build(BuildContext context) {
     final providers = [EmailAuthProvider()];
 
     return SignInScreen(

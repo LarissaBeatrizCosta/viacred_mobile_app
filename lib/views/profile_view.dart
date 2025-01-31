@@ -12,6 +12,17 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return AlertDialog(
+      content: _Body(),
+    );
+  }
+}
+
+class _Body extends StatelessWidget {
+  const _Body();
+
+  @override
+  Widget build(BuildContext context) {
     final textSignOut = Text(
       'Sair',
       style: TextStyle(fontSize: 30),
@@ -40,38 +51,36 @@ class ProfileView extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
     );
-    return AlertDialog(
-      content: SizedBox(
-        height: 155,
-        width: 30,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: ElevatedButton(
-                style: styleSignOut,
-                onPressed: () async {
-                  await FirebaseAuth.instance.signOut();
-                  final prefs = await SharedPreferences.getInstance();
-                  prefs.clear();
-                  Navigator.pushReplacementNamed(context, '/login');
-                },
-                child: textSignOut,
-              ),
-            ),
-            ElevatedButton(
+    return SizedBox(
+      height: 155,
+      width: 30,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: ElevatedButton(
+              style: styleSignOut,
               onPressed: () async {
-                await FirebaseAuth.instance.currentUser?.delete();
+                await FirebaseAuth.instance.signOut();
                 final prefs = await SharedPreferences.getInstance();
-                prefs.remove(Constants.userKey);
-
+                prefs.clear();
                 Navigator.pushReplacementNamed(context, '/login');
               },
-              style: styleDelete,
-              child: textDelete,
+              child: textSignOut,
             ),
-          ],
-        ),
+          ),
+          ElevatedButton(
+            onPressed: () async {
+              await FirebaseAuth.instance.currentUser?.delete();
+              final prefs = await SharedPreferences.getInstance();
+              prefs.remove(Constants.userKey);
+
+              Navigator.pushReplacementNamed(context, '/login');
+            },
+            style: styleDelete,
+            child: textDelete,
+          ),
+        ],
       ),
     );
   }
