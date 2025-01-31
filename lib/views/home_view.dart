@@ -98,10 +98,10 @@ class _RateBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = Theme.of(context).textTheme.bodyLarge?.copyWith(
-          fontSize: 65,
-        );
-
+    final style = TextStyle(
+      fontSize: 48,
+      color: ColorsHome().colorMap[11],
+    );
     return Consumer<RateNumberController>(
       builder: (_, stateRateNumer, __) {
         return Row(
@@ -111,25 +111,20 @@ class _RateBar extends StatelessWidget {
             (index) {
               return Row(
                 children: [
-                  GestureDetector(
-                    onTap: () {
+                  ElevatedButton(
+                    onPressed: () {
                       stateRateNumer.rateNumberValue(index);
                     },
-                    child: Container(
-                      width: 95,
-                      height: 95,
-                      decoration: BoxDecoration(
-                        color: ColorsHome().colorMap[index],
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ColorsHome().colorMap[index],
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      child: Center(
-                        child: Text(
-                          index.toString(),
-                          style: style?.copyWith(
-                            color: ColorsHome().colorMap[11],
-                          ),
-                        ),
-                      ),
+                      fixedSize: const Size(100, 95),
+                    ),
+                    child: Text(
+                      index.toString(),
+                      style: style,
                     ),
                   ),
                   SizedBox(width: 15),
